@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {BsArrowRight} from "react-icons/bs"
 const ServiceCard = ({ service }) => {
     const { img, title, price } = service;
