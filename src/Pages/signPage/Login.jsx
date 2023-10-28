@@ -8,10 +8,10 @@ const Login = () => {
         e.preventDefault();
         console.log("clicked");
         const form = e.target;
-        const email = form.email.vlaue;
-        const name = form.name.value;
+        // const email = form.mail.vlaue;
         const password = form.password.value;
-        console.log(email,name,password);
+        const email = form.email.value;
+        console.log(email,password);
 
         signIn(email,password)
         .then(result => {
@@ -33,6 +33,13 @@ const Login = () => {
                 <div className="card-body flex-shrink-0 w-full rounded-lg max-w-sm shadow-2xl bg-base-100">
                     <h2 className="text-3xl font-bold text-center text-red-500">Login</h2>
                     <form onSubmit={handleLogin} className="">
+                        {/* <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" name="mail" placeholder="mail" className="input input-bordered" />
+                        </div> */}
+                        
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -44,9 +51,6 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" className="input input-bordered" name="password" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                         </div>
                         <div className="form-control mt-2">
                             <input  type="submit" value="Login" className="btn  bg-red-500  text-white hover:bg-red-500 btn-ghost normal-case" />
