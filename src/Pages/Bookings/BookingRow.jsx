@@ -1,10 +1,10 @@
 import swal from "sweetalert";
 
-const BookingRow = ({ booking,handleDelete }) => {
+const BookingRow = ({ booking, handleDelete, handleConfirm }) => {
     console.log(booking);
-    const {_id, img, title, customerName, date, email, price, service, service_id } = booking;
+    const { _id, img, title, customerName, date, email, price, service, service_id, status } = booking;
 
-    
+
 
     return (
 
@@ -38,6 +38,15 @@ const BookingRow = ({ booking,handleDelete }) => {
             </th>
             <th>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle">X</button>
+            </th>
+            <th>
+                {
+                    status === 'confirm'?
+                    <button className="font-bold">Confirmed</button>
+                    :
+                    <button onClick={() => handleConfirm(_id)} className="btn btn-ghost normal-case">Please Confirm</button>
+                    
+                }
             </th>
         </tr>
 
