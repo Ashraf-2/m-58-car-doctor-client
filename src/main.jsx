@@ -13,6 +13,7 @@ import SignUp from './Pages/signPage/SignUp';
 import AuthProviders from './Providers/AuthProviders';
 import CheckOut from './Pages/CheckOut/CheckOut';
 import Bookings from './Pages/Bookings/Bookings';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -36,13 +37,13 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: "/checkout/:_id",
+        path: "/checkout/:id",
         element: <CheckOut></CheckOut>,
-        loader: ({params}) => fetch(`http://localhost:5000/services/${params._id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
         path: "/bookings",
-        element: <Bookings></Bookings>
+        element: <PrivateRoute><Bookings></Bookings></PrivateRoute>
 
       }
 
