@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import BookingRow from "./BookingRow";
 import swal from "sweetalert";
+import axios from "axios";
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
@@ -9,12 +10,17 @@ const Bookings = () => {
 
     const [bookings, setBookings] = useState([]);
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setBookings(data);
-            })
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // console.log(data)
+        //         setBookings(data);
+        //     })
+
+        axios.get(url, {withCredentials: true})              //withcredentials will send the cookies.
+        .then(res => {
+            setBookings(res.data);
+        })
     }, [url])
     const handleDelete = id => {
         const proceed = confirm("Ary you sure to delete this service?");

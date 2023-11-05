@@ -7,11 +7,11 @@ const Services = () => {
         fetch('http://localhost:5000/services')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setServices(data)
         })
     },[])
-    console.log("services: ",services);
+    // console.log("services: ",services);
     return (
         <div className="py-5">
             <div className="text-center">

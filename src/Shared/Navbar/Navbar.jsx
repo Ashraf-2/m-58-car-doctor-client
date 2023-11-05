@@ -8,6 +8,7 @@ const Navbar = () => {
     const navItems = <>
         <li> <Link to="/">Home</Link> </li>
         <li> <Link to="/about">About</Link> </li>
+        {/* <li> <a className="duration-900" href="#about">About</a> </li> */}
         {
             user?<>
                 <li><Link to="/bookings">Bookings</Link></li>

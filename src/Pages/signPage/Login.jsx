@@ -1,22 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../assets/images/login/login.svg"
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import axios from "axios";
 const Login = () => {
     const {signIn} = useContext(AuthContext);
+    const location = useLocation();
+    // console.log(location);
+    
+    const navigate = useNavigate();
     const handleLogin = e => {
         e.preventDefault();
-        console.log("clicked");
+        // console.log("clicked");
         const form = e.target;
         // const email = form.mail.vlaue;
         const password = form.password.value;
         const email = form.email.value;
-        console.log(email,password);
+        // console.log(email,password);
 
         signIn(email,password)
         .then(result => {
-            const user = result.user;
-            console.log(user);
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            const user = {email};       //object
+          
+            //get access token
+            axios.post('http://localhost:5000/jwt',user, {withCredentials: true})
+            .then(res => {
+                console.log(res.data)
+                if(res.data.success)
+                {
+                    navigate(location?.state? location.state : '/')
+                }
+            })
+
+
         })
         .catch(error => console.log(error))
 
@@ -32,14 +50,7 @@ const Login = () => {
                 </div>
                 <div className="card-body flex-shrink-0 w-full rounded-lg max-w-sm shadow-2xl bg-base-100">
                     <h2 className="text-3xl font-bold text-center text-red-500">Login</h2>
-                    <form onSubmit={handleLogin} className="">
-                        {/* <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" name="mail" placeholder="mail" className="input input-bordered" />
-                        </div> */}
-                        
+                    <form onSubmit={handleLogin} className="">                        
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>

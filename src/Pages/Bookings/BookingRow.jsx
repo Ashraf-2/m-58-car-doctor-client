@@ -1,7 +1,7 @@
 import swal from "sweetalert";
 
 const BookingRow = ({ booking, handleDelete, handleConfirm }) => {
-    console.log(booking);
+    // console.log(booking);
     const { _id, img, title, customerName, date, email, price, service, service_id, status } = booking;
 
 
