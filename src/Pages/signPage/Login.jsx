@@ -33,12 +33,8 @@ const Login = () => {
                     navigate(location?.state? location.state : '/')
                 }
             })
-
-
         })
         .catch(error => console.log(error))
-
-        
     }
     return (
         <div className="hero min-h-screen bg-base-200 md:py-0 py-5">
